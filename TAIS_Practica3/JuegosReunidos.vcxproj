@@ -98,6 +98,9 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="JuegoOtelo.cpp" />
     <ClCompile Include="JuegosReunidos.cpp" />
+    <ClCompile Include="JugadorAleaOtelo.cpp" />
+    <ClCompile Include="JugadorMinimaxOtelo.cpp" />
+    <ClCompile Include="JugadorMinimaxT2.cpp" />
     <ClCompile Include="src\InterfazGraf3enRaya.cpp" />
     <ClCompile Include="src\InterfazGrafT2.cpp" />
     <ClCompile Include="src\Juego3enRaya.cpp" />
@@ -113,6 +116,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="JuegoOtelo.h" />
+    <ClInclude Include="JugadorAleaOtelo.h" />
+    <ClInclude Include="JugadorMinimaxOtelo.h" />
+    <ClInclude Include="JugadorMinimaxT2.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\InterfazGraf3enRaya.h" />
     <ClInclude Include="src\InterfazGrafT2.h" />

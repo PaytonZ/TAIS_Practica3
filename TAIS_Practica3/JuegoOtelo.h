@@ -37,6 +37,9 @@ public:
 	// método abstracto que determina si se puede jugar en la posición (c,f)
 	virtual bool sePuede(unsigned int c,unsigned int f) const throw()
 	{
+		try {
+			return dameCasilla(c,f)==Jn;
+		} catch(EJuego &) { return false; }
 		return false;
 	}
 
@@ -44,10 +47,18 @@ public:
 	// Si dicha jugada no es legal se lanza una excepción
 	virtual void aplicaJugada(unsigned int c,unsigned int f) throw(EJuego)
 	{
-		
+		if(sePuede(c,f) && !ganador) {
+
+
+		}
+		else
+		{
+			throw EJuego("Jugada incorrecta");
+		}
+
 	}
-	
-	
+
+
 
 	// indica si no se pueden realizar más jugadas
 	virtual bool fin() const
