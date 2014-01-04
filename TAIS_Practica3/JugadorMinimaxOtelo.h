@@ -13,6 +13,16 @@ public:
 	{50, -1,5,2,2,5, -1,50}
 	};*/
 
+	Casilla juega(const JuegoLogT2& EJ) const throw(EJugador)
+	{
+		
+	}
+
+	float Heuristica(const JuegoLogT2& EJ, Turno T) const
+	{
+
+	}
+
 private:
 
 

@@ -20,6 +20,11 @@ public:
 	JuegoOtelo(Turno JI=Jn) : libres((numCols-1)*numFils){
 		turno=JI;
 		tablero=new Matriz<Ficha>(numCols,numFils,Jn);
+		
+		//if(this->dameCasilla(2,2)==Jhum) throw "exception";
+		
+		
+		
 	}
 	JuegoOtelo(const JuegoOtelo& EJ) : JuegoLogT2(EJ) {
 		libres=EJ.libres;

@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A9ACE2CF-1857-4340-83E6-B529FFEEDAF6}</ProjectGuid>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>JuegosReunidos</RootNamespace>
   </PropertyGroup>
@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="InterfazGrafOtelo.cpp" />
     <ClCompile Include="JuegoOtelo.cpp" />
     <ClCompile Include="JuegosReunidos.cpp" />
     <ClCompile Include="JugadorAleaOtelo.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="InterfazGrafOtelo.h" />
     <ClInclude Include="JuegoOtelo.h" />
     <ClInclude Include="JugadorAleaOtelo.h" />
     <ClInclude Include="JugadorMinimaxOtelo.h" />
