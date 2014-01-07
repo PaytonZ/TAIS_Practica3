@@ -21,10 +21,7 @@ public:
 		turno=JI;
 		tablero=new Matriz<Ficha>(numCols,numFils,Jn);
 		
-		//if(this->dameCasilla(2,2)==Jhum) throw "exception";
-		
-		
-		
+				
 	}
 	JuegoOtelo(const JuegoOtelo& EJ) : JuegoLogT2(EJ) {
 		libres=EJ.libres;
@@ -38,6 +35,11 @@ public:
 	{
 		JuegoLogT2::reinicia(JI);
 		libres=(numCols-1)*numFils;
+		tablero->at(3,3)=Jhum;
+		tablero->at(4,4)=Jhum;
+		tablero->at(4,3)=Jmaq;
+		tablero->at(3,4)=Jmaq;
+		libres-=4;
 	}
 	// método abstracto que determina si se puede jugar en la posición (c,f)
 	virtual bool sePuede(unsigned int c,unsigned int f) const throw()
@@ -50,27 +52,13 @@ public:
 
 	// método abstracto que aplica la jugada caracterizada por la posición (c,f) del tablero.
 	// Si dicha jugada no es legal se lanza una excepción
-	virtual void aplicaJugada(unsigned int c,unsigned int f) throw(EJuego)
-	{
-		if(sePuede(c,f) && !ganador) {
-
-
-		}
-		else
-		{
-			throw EJuego("Jugada incorrecta");
-		}
-
-	}
-
-
+	virtual void aplicaJugada(unsigned int c,unsigned int f) throw(EJuego);
 
 	// indica si no se pueden realizar más jugadas
 	virtual bool fin() const
 	{
 		return false;
 	}
-
 	// devuelve el ganador, que por defecto es el turno actual cuando hay un ganador
 	virtual Turno dameGanador() const throw()
 	{
@@ -81,7 +69,6 @@ public:
 	{
 		return new JuegoOtelo(*this);
 	}
-
 };
 
 #endif
