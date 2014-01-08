@@ -40,12 +40,30 @@ public:
 		tablero->at(4,3)=Jmaq;
 		tablero->at(3,4)=Jmaq;
 		libres-=4;
+		numFichas[0]=2;
+		numFichas[1]=2;
 	}
 	// método abstracto que determina si se puede jugar en la posición (c,f)
 	virtual bool sePuede(unsigned int c,unsigned int f) const throw()
 	{
+		
 		try {
-			return dameCasilla(c,f)==Jn;
+
+
+			if( dameCasilla(c,f)!=Jn) return false;
+			if(!(dameCasilla(c+1,f)!=Jn || 
+				dameCasilla(c-1,f)!=Jn ||
+				dameCasilla(c+1,f-1)!=Jn ||
+				dameCasilla(c+1,f)!=Jn ||
+				dameCasilla(c+1,f+1)!=Jn ||
+
+				dameCasilla(c-1,f-1)!=Jn ||
+				dameCasilla(c-1,f)!=Jn ||
+				dameCasilla(c-1,f+1)!=Jn)) return false;
+
+
+			return true;
+
 		} catch(EJuego &) { return false; }
 		return false;
 	}
