@@ -14,6 +14,11 @@ private:
 	unsigned int libres;
 	int numFichas[3];
 	bool haPasado;
+	bool vertical(unsigned int c,unsigned int f) const;
+	bool horizontal(unsigned int c,unsigned int f) const ;
+	bool diagonal(unsigned int c,unsigned int f) const;
+
+
 
 public:
 
@@ -51,18 +56,9 @@ public:
 
 
 			if( dameCasilla(c,f)!=Jn) return false;
-			if(!(dameCasilla(c+1,f)!=Jn || 
-				dameCasilla(c-1,f)!=Jn ||
-				dameCasilla(c+1,f-1)!=Jn ||
-				dameCasilla(c+1,f)!=Jn ||
-				dameCasilla(c+1,f+1)!=Jn ||
+			
 
-				dameCasilla(c-1,f-1)!=Jn ||
-				dameCasilla(c-1,f)!=Jn ||
-				dameCasilla(c-1,f+1)!=Jn)) return false;
-
-
-			return true;
+			return horizontal(c,f) && vertical(c,f) && diagonal(c,f);
 
 		} catch(EJuego &) { return false; }
 		return false;
