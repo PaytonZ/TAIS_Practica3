@@ -14,13 +14,33 @@ private:
 	unsigned int libres;
 	int numFichas[3];
 	bool haPasado;
-	bool vertical(unsigned int c,unsigned int f) const;
-	bool horizontal(unsigned int c,unsigned int f) const ;
-	bool diagonal(unsigned int c,unsigned int f) const;
+	bool vertical( int c, int f) const;
+	bool horizontal( int c, int f) const ;
+	bool diagonal( int c, int f) const;
 
+	bool horizontalderecha( int c, int f) const ;
+	bool horizontalizquierda( int c, int f) const ;
+
+	bool verticalarriba( int c, int f) const;
+	bool verticalabajo( int c, int f) const;
+
+	bool diagonalarribaderecha( int c, int f) const;
+	bool diagonalabajoderecha( int c, int f) const;
+	bool diagonalabajoizquierda( int c, int f) const;
+	bool diagonalarribaizquierda( int c, int f) const;
+
+	void comer(int c,int f);
+
+	void comerhorizontal(int c, int f);
+	void comervertical(int c, int f);
+	void comerdiagonal(int c, int f);
+
+	void actualizarfichas(int num_fichas);
 
 
 public:
+
+
 
 	JuegoOtelo(Turno JI=Jn) : libres((numCols-1)*numFils){
 		turno=JI;
@@ -54,11 +74,7 @@ public:
 		
 		try {
 
-
-			if( dameCasilla(c,f)!=Jn) return false;
-			
-
-			return horizontal(c,f) && vertical(c,f) && diagonal(c,f);
+		return dameCasilla(c,f)==Jn &&  ( horizontal(c,f) || vertical(c,f) || diagonal(c,f) ) ;
 
 		} catch(EJuego &) { return false; }
 		return false;
@@ -83,6 +99,10 @@ public:
 	{
 		return new JuegoOtelo(*this);
 	}
+
+	string getNumFichas(Turno t) const;
+
+
 };
 
 #endif

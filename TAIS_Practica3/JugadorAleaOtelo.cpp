@@ -10,7 +10,7 @@ Casilla JugadorAleaOtelo::juega(const JuegoLogT2& EC) const throw(EJugador)
 	{
 		if (EC.final()) throw EJugador();
 		int col,fil;
-        unsigned int Ncol=EC.numCol();
+        unsigned int Ncol=EC.numCol()-1;
         unsigned int Nfil=EC.numFil();
         col=rand() % Ncol;
         fil=rand() % Nfil;
