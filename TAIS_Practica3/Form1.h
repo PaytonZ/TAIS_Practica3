@@ -17,6 +17,7 @@
 #include "InterfazGrafOtelo.h"
 #include "JugadorAleaOtelo.h"
 
+#include "JugadorMinimaxOtelo.h"
 
 namespace JuegosReunidos {
 
@@ -341,80 +342,91 @@ namespace JuegosReunidos {
 				 Tablero->Refresh();
 			 }
 
-	void cambiarNivelDificultad(enuNivel n) {
-			tipoJugador = minimax;
-			nivel = n;
-			delete jugador;
-			switch(juego){
-			case otelo : //INCOMPLETO jugador = new JugadorMinimaxOtelo(nivel); 
-				 break;
-			case conecta4: //INCOMPLETO  jugador = new JugadorMinimaxConecta4(nivel); 
-				 break;
-			}
-			if(nivel==alto) altoToolStripMenuItem->Checked=true; else altoToolStripMenuItem->Checked=false;
-			if(nivel==medio) medioToolStripMenuItem->Checked=true; else medioToolStripMenuItem->Checked=false;
-			if(nivel==bajo) bajoToolStripMenuItem->Checked=true; else bajoToolStripMenuItem->Checked=false;
-
-		}
-
-private: System::Void altoToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		//INCOMPLETO 	 cambiarNivelDificultad(alto);
-		 }
-private: System::Void medioToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		//INCOMPLETO 	 cambiarNivelDificultad(medio);
-		 }
-private: System::Void bajoToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		//INCOMPLETO 	 cambiarNivelDificultad(bajo);
-		 }
-
-
-private: System::Void aleatorioToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 tipoJugador = alea;
-			 delete jugador;
-			 switch (juego) {
-			 case conecta4:
-				 //INCOMPLETO jugador = new JugadorAleaConecta4();
-				 break;
-			 case tresEnRaya:
-				 jugador= new JugadorAlea3enRaya(); break;
-			 case otelo:
-				 //INCOMPLETO jugador=new JugadorAleaOtelo(); 
-				 break;
+			 void cambiarNivelDificultad(enuNivel n) {
+				 tipoJugador = minimax;
+				 nivel = n;
+				 delete jugador;
+				 switch(juego){
+				 case otelo : //INCOMPLETO
+					 jugador = new JugadorMinimaxOtelo(nivel); 
+					 break;
+				 case conecta4: //INCOMPLETO  jugador = new JugadorMinimaxConecta4(nivel); 
+					 break;
+				 }
+				 if(nivel==alto) altoToolStripMenuItem->Checked=true; else altoToolStripMenuItem->Checked=false;
+				 if(nivel==medio) medioToolStripMenuItem->Checked=true; else medioToolStripMenuItem->Checked=false;
+				 if(nivel==bajo) bajoToolStripMenuItem->Checked=true; else bajoToolStripMenuItem->Checked=false;
 
 			 }
-		 }
 
-private: System::Void tresEnRayaToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 if(juego!=tresEnRaya) {
-				 juego = tresEnRaya;
-				 delete partida;
-				 partida = new Juego3enRaya();
-				 delete interfaz;
-				 interfaz = new InterfazGraf3enRaya(Tablero->Width, Tablero->Height);
-				 if (tipoJugador==alea) jugador = new JugadorAlea3enRaya();
-				// else // tipoJugador == minimax
-				//	 jugador = new JugadorMinimax3enRaya(nivel);
-				 partida->reinicia(jugIni);
-				 Tablero->Refresh();
+	private: System::Void altoToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 //INCOMPLETO 
+				 cambiarNivelDificultad(alto);
 			 }
-		 }
-
-private: System::Void oteloToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			  if(juego!=otelo) {
-				 juego = otelo;
-				 delete partida;
-				 partida = new JuegoOtelo();
-				 delete interfaz;
-				 interfaz = new InterfazGrafOtelo(Tablero->Width, Tablero->Height);
-				 
-				 if (tipoJugador==alea) jugador = new JugadorAleaOtelo();
-				// else // tipoJugador == minimax
-				//	 jugador = new JugadorMinimax3enRaya(nivel);
-				 partida->reinicia(jugIni);
-				 Tablero->Refresh();
+	private: System::Void medioToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 //INCOMPLETO 	
+				 cambiarNivelDificultad(medio);
+			 }
+	private: System::Void bajoToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 //INCOMPLETO 	
+				 cambiarNivelDificultad(bajo);
 			 }
 
-		 }
-};
+
+	private: System::Void aleatorioToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 tipoJugador = alea;
+				 delete jugador;
+				 switch (juego) {
+				 case conecta4:
+					 //INCOMPLETO jugador = new JugadorAleaConecta4();
+					 break;
+				 case tresEnRaya:
+					 jugador= new JugadorAlea3enRaya(); break;
+				 case otelo:
+					 //INCOMPLETO 
+					 jugador=new JugadorAleaOtelo(); 
+					 break;
+
+				 }
+			 }
+
+	private: System::Void tresEnRayaToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 if(juego!=tresEnRaya) {
+					 juego = tresEnRaya;
+					 delete partida;
+					 partida = new Juego3enRaya();
+					 delete interfaz;
+					 interfaz = new InterfazGraf3enRaya(Tablero->Width, Tablero->Height);
+					 if (tipoJugador==alea) jugador = new JugadorAlea3enRaya();
+					 // else // tipoJugador == minimax
+					 //	 jugador = new JugadorMinimax3enRaya(nivel);
+					 partida->reinicia(jugIni);
+					 Tablero->Refresh();
+				 }
+			 }
+
+	private: System::Void oteloToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 if(juego!=otelo) {
+					 juego = otelo;
+					 delete partida;
+					 partida = new JuegoOtelo();
+					 delete interfaz;
+					 interfaz = new InterfazGrafOtelo(Tablero->Width, Tablero->Height);
+
+					 if (tipoJugador==alea) {
+						 jugador = new JugadorAleaOtelo();
+					 }
+					 else { 
+						 if(tipoJugador == minimax)
+						 {
+							 jugador = new JugadorMinimaxOtelo();
+						 }
+					 }
+					 partida->reinicia(jugIni);
+					 Tablero->Refresh();
+				 }
+
+			 }
+	};
 }
 

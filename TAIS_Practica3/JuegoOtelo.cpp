@@ -5,7 +5,13 @@ void JuegoOtelo::aplicaJugada(unsigned int c,unsigned int f) throw(EJuego) {
 	if(sePuede(c,f) && !ganador) {
 		tablero->at(c,f)=turno;
 		comer(c,f);
-
+		if(turno==Jhum)
+		{
+			numFichas[0]++;
+		}else
+		{
+			numFichas[1]++;
+		}
 		libres--;
 		//ganador=conecta3(c,f);
 		if(!ganador) turno=cambia(turno);
