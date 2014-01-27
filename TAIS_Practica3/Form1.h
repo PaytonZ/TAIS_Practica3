@@ -91,7 +91,7 @@ namespace JuegosReunidos {
 	private: System::Windows::Forms::ToolStripMenuItem^  salirToolStripMenuItem;
 
 			 void iniciar() {
-				 milSeg = 1000;  // espera antes de que la maquina juegue
+				 milSeg = 50;  // espera antes de que la maquina juegue
 
 				 // juego inicial por defecto
 				 juego = tresEnRaya;
@@ -419,7 +419,7 @@ namespace JuegosReunidos {
 					 else { 
 						 if(tipoJugador == minimax)
 						 {
-							 jugador = new JugadorMinimaxOtelo();
+							 jugador = new JugadorMinimaxOtelo(nivel);
 						 }
 					 }
 					 partida->reinicia(jugIni);

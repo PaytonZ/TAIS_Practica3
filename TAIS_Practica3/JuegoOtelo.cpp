@@ -2,18 +2,33 @@
 #include <sstream>
 
 void JuegoOtelo::aplicaJugada(unsigned int c,unsigned int f) throw(EJuego) {
+
+	if(debePasar() && c != 8)
+	{
+		throw EJuego("No puede realizar ninguna jugada -> Pasar.");
+	}
+
 	if(sePuede(c,f) && !ganador) {
-		tablero->at(c,f)=turno;
-		comer(c,f);
-		if(turno==Jhum)
+		if(!(c==8))
 		{
-			numFichas[0]++;
-		}else
-		{
-			numFichas[1]++;
+
+			tablero->at(c,f)=turno;
+			comer(c,f);
+			if(turno==Jhum)
+			{
+				numFichas[0]++;
+			}else
+			{
+				numFichas[1]++;
+			}
+			libres--;
+
+
+			if(libres==0)
+			{
+				ganador=true;
+			}
 		}
-		libres--;
-		//ganador=conecta3(c,f);
 		if(!ganador) turno=cambia(turno);
 	} else throw EJuego("Jugada incorrecta");
 }
@@ -307,9 +322,9 @@ void JuegoOtelo::comerdiagonal(int c, int f)
 			comidas++;
 
 		}
-			
+
 	}
-	
+
 	if(diagonalabajoizquierda(c,f))
 	{
 		int i = c+1;
@@ -372,6 +387,7 @@ void JuegoOtelo::actualizarfichas(int num_fichas)
 		numFichas[1]+=num_fichas;
 	}
 
+
 }
 
 string JuegoOtelo::getNumFichas(Turno t) const
@@ -380,12 +396,32 @@ string JuegoOtelo::getNumFichas(Turno t) const
 	string aux1;
 
 	if(t==Jhum) 
-		{
-			aux << numFichas[0];
+	{
+		aux << numFichas[0];
 	}
 	if(t==Jmaq) {
 		aux << numFichas[1];
 	}
 
 	return aux.str();
+}
+
+bool JuegoOtelo::debePasar() const
+{
+	auto pasar_oblig = false;
+
+	for(auto c=0; c < numCol()-1 && !pasar_oblig ; c++)
+	{
+		for(auto f=0; f < numFil() && !pasar_oblig  ; f++ )
+		{
+			pasar_oblig  = (dameCasilla(c,f)==Jn && (horizontal(c,f) || diagonal(c,f) || vertical(c,f)) ) ;
+		}
+	}
+	return !pasar_oblig;
+
+}
+
+int  JuegoOtelo::getLibres() const 
+{
+	return libres;
 }

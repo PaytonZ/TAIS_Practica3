@@ -37,6 +37,7 @@ private:
 
 	void actualizarfichas(int num_fichas);
 
+	bool debePasar() const;
 
 public:
 
@@ -45,8 +46,8 @@ public:
 	JuegoOtelo(Turno JI=Jn) : libres((numCols-1)*numFils){
 		turno=JI;
 		tablero=new Matriz<Ficha>(numCols,numFils,Jn);
-		
-				
+
+
 	}
 	JuegoOtelo(const JuegoOtelo& EJ) : JuegoLogT2(EJ) {
 		libres=EJ.libres;
@@ -71,10 +72,17 @@ public:
 	// método abstracto que determina si se puede jugar en la posición (c,f)
 	virtual bool sePuede(unsigned int c,unsigned int f) const throw()
 	{
-		
+
 		try {
 
-		return dameCasilla(c,f)==Jn &&  ( horizontal(c,f) || vertical(c,f) || diagonal(c,f) ) ;
+			if(debePasar() && c==8) 
+			{
+						
+					return true;
+			}
+
+
+			return (dameCasilla(c,f)==Jn &&  ( horizontal(c,f) || vertical(c,f) || diagonal(c,f) )) ;
 
 		} catch(EJuego &) { return false; }
 		return false;
@@ -87,12 +95,25 @@ public:
 	// indica si no se pueden realizar más jugadas
 	virtual bool fin() const
 	{
-		return false;
+		return libres==0 && debePasar();
 	}
 	// devuelve el ganador, que por defecto es el turno actual cuando hay un ganador
 	virtual Turno dameGanador() const throw()
 	{
-		return Jn;
+		if(numFichas[0] > numFichas[1])
+		{
+			return Jhum;
+		}
+		else {
+			if(numFichas[0] < numFichas[1])
+			{
+				return Jmaq;
+			}
+			else
+			{
+				return Jn;
+			}
+		}
 	}
 	// método abstracto que devuelve un puntero a una copia del juego actual
 	virtual JuegoLogT2* clona() const
@@ -101,6 +122,8 @@ public:
 	}
 
 	string getNumFichas(Turno t) const;
+
+	int getLibres() const ;
 
 
 };

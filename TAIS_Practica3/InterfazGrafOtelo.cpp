@@ -21,7 +21,7 @@ void InterfazGrafOtelo::muestraEst(Graphics^ canvas, const JuegoOtelo& EJ) const
 	Point posresultado(100,window_height- ladoCasilla/2);
 
 	
-	auto aux = "Blancas : " + EJ.getNumFichas(Jhum) + " Negras : "  + EJ.getNumFichas(Jmaq);
+	auto aux = "Blancas : " + EJ.getNumFichas(Jhum) + " Negras : "  + EJ.getNumFichas(Jmaq) + " Libres: " + convertInt(EJ.getLibres()) ;
 	System::String ^resultado =  gcnew System::String(aux.c_str()) ;
 
 	canvas->DrawString(resultado,letra,Brushes::Black,posresultado);

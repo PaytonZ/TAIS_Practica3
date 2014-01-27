@@ -11,7 +11,7 @@ float JugadorMinimaxT2::valoraMin(const JuegoLogT2& EJ, Turno T, int n, float A,
 	if (EJ.final() || n == 0) return Heuristica(EJ,T);
 	else
 	{
-		for(auto c=0; c < EJ.numCol()-1 ;c++)
+		for(auto c=0; c < EJ.numCol() ;c++)
 		{
 			for (auto f=0; f < EJ.numFil() ; f++)
 			{
@@ -36,7 +36,7 @@ float JugadorMinimaxT2::valoraMax(const JuegoLogT2& EJ, Turno T, int n, float A,
 	if (EJ.final() || n == 0) return Heuristica(EJ,T);
 	else
 	{
-		for(auto c=0; c < EJ.numCol()-1 ;c++)
+		for(auto c=0; c < EJ.numCol() ;c++)
 		{
 			for (auto f=0; f < EJ.numFil() ; f++)
 			{
@@ -63,7 +63,7 @@ Casilla JugadorMinimaxT2::juega(const JuegoLogT2& EJ) const throw(EJugador)
 	Turno turnoactual(EJ.dameTurno());
 	if(!EJ.fin())
 	{
-		for(auto c=0; c < EJ.numCol()-1; c++ )
+		for(auto c=0; c < EJ.numCol(); c++ )
 		{
 			for(auto f=0; f < EJ.numFil(); f++)
 			{
@@ -89,9 +89,10 @@ Casilla JugadorMinimaxT2::juega(const JuegoLogT2& EJ) const throw(EJugador)
 	{
 		throw(EJugador("Fin de la partida"));
 	}
-	if(!EJ.sePuede(jugadamejor))
+	if(jugadamejor.col > EJ.numCol() || jugadamejor.fil > EJ.numFil() )
 	{
-		throw(EJugador("No se pudo determinar una jugada valida"));
+		jugadamejor = Casilla(8,0);
+		//throw(EJugador("No se pudo determinar una jugada valida"));
 	}
 	return jugadamejor;
 }
